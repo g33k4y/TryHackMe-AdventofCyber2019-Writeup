@@ -28,7 +28,9 @@ First, we need to do a nmap scan to find out which port is SSH running on
  -p- to scan all 65535 TCP ports (default scans first 1000 ports)
 
 we will reveal port 4567 as an open SSH port
+
 ![](./pic1.png)
+
 
 Next we need to use hydra to crack sam's password
 
@@ -69,6 +71,7 @@ So we can exploit this to get our flag2!
 
 `nano /home/scripts/clean_up.sh`
 > rm -rf /tmp/*
+
 > cat /home/ubuntu/flag2.txt > /home/sam/flag2.txt
 
 After a minute, we will find the flag2.txt in sam's directory. We got the flag!
