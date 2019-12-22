@@ -31,23 +31,24 @@ td:lr Answer: **6**
 Unzip the `files.zip` to get two files: `challenge1` and `file1`
 
 `file1` is used for tutorial purpose, with the [supporting materials](./Support_Doc.docx)
-we will focus on the `challenge1` for this exercise.
+
+Hence we will only focus on the `challenge1` for this exercise.
 
 First we run the binary in debugging mode using r2:
 
 `r2 -d ./challenge1`
 
-we will use the command `aa` to let r2 analyze the program. This will take a couple minutes.
+We will let r2 analyze the program. This will take a couple minutes.
 
 `aa`
 
-Next we for the main function in the binary and examine its assemby clode:
+Next we look for the main function in the binary and examine its assemby code:
 
 `afl | grep main`
 
 `pdf @main`
 
-![][./pic1.png]
+![](./pic1.png)
 
 
 At address `0x004005b1`, we can see that a constant value 1 is being moved into the variable `var_ch`. So we got the first answer: **1**
@@ -65,7 +66,7 @@ Lastly, going down the flow:
 `0x00400b66` - the value of %eax is being pushed into `var_4h`
 `0x00400b69` - %eax is set to 0. 
 
-Hence we go the third answer: **6**
+Hence we got the third answer: **6**
 
 
 
