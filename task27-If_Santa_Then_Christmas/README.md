@@ -9,7 +9,7 @@
 > The questions below relate to the _if2_ binary.
 
 
-## Question 1
+## Questions
 
 > What is the value of local_8h before the end of the main function?
 
