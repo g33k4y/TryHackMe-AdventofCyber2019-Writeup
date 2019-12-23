@@ -43,7 +43,7 @@ From the question and supporting material, looks like we need to do a brute-forc
 
 `python3 dirsearch.py -u http://<ip>:3000/ -w wordlist.txt -E `
 
->   the command works on a URL or hostname_(-u <ip:port>)_, uses a wordlist_(-w wordlist.txt)_, and works on a predefined extensions list_(-E)_
+>   the command works on a URL or hostname(-u <ip:port>), uses a wordlist(-w wordlist.txt), and works on a predefined extensions list(-E)
 
 ![](./res/pic2.png)
 
@@ -80,6 +80,7 @@ From the repo, we can see our answer: **defaultpass**
 We can use the credentials obtained at the github repo to login to the forum:
 
 `username: admin`
+
 `password: defaultpass`
 
 ![](./res/pic7.png)
