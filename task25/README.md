@@ -30,7 +30,7 @@ First, we need to do a nmap scan to find out which port is SSH running on
 
 we will reveal port 4567 as an open SSH port
 
-![](./pic1.png)
+![](./res/pic1.png)
 
 
 Next we need to use hydra to crack sam's password
@@ -41,13 +41,13 @@ Next we need to use hydra to crack sam's password
 
 we will get the password: **chocolate**
 
-![](./pic2.png)
+![](./res/pic2.png)
 
 `ssh sam@[ip] -p4567` and then login with the password.
 
 `cat flag1.txt` will get us the flag for Question 2.
 
-![](./pic3.png)
+![](./res/pic3.png)
 
 Lastly, we need to obtain privesc to read flag2. First we have to find the cronjob that runs every minute.
 typically cronjobs are found in these few directories in Linux machine:
@@ -63,7 +63,7 @@ typically cronjobs are found in these few directories in Linux machine:
 
 the /etc/crontab allows one to edit the time at which the cronjobs execute, or add/delete other cronjobs available in any other directories.
 
-![](./pic4.png)
+![](./res/pic4.png)
 
 
 seems like the cron that runs at every minute is not found in the general /etc/crontab. Which means it is probably running in root's own individual crontab folder /var/spool/cron/crontabs/

