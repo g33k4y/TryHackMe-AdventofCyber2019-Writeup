@@ -23,7 +23,7 @@ td:lr Answer: **rainbow**
 
 **The following is performed using Wireshark v3.0.5**
 
-First, let's download the [pcap file](./Evil Elf.pcap).
+First, let's download the [pcap file](./).
 
 Next we run wireshark to take a look at the pcap file.
 
@@ -60,7 +60,7 @@ We first put the hash data in a file (hash.txt), and runs the hashcat with a pas
 
 `hashcat -m 1800 <your hash file> <your list file>`
 
-> `-m 8000` determines the hash type, <your hash file> is the hash, and <your list file> would be the password list to run against.
+> `-m 8000` determines the hash type, \<your hash file\> is the hash, and \<your list file\> would be the password list to run against.
 
 ![](./res/pic4.png)
 
