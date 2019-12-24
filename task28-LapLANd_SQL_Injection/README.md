@@ -114,7 +114,7 @@ Ok, we are not allowed to upload php files. So let's try to fiddle around with t
 
 Look back at our listener once we uploaded our [php-reverse-shell.phtml](./php-reverse-shell.phtml) file. We will see that we have obtained an interactive shell.
 
-So we can go straight to find out flag: `cat /home/user/flag.txt`
+So we can go straight to find our flag: `cat /home/user/flag.txt`
 
 ![](./res/pic9.png)
 
