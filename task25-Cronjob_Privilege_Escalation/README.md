@@ -1,9 +1,7 @@
 ## Introduction
 
-> You think the evil Christmas monster is acting on Elf Sam's account!
-
-> Hack into her account and escalate your privileges on this Linux machine.
-
+> You think the evil Christmas monster is acting on Elf Sam's account!  
+> Hack into her account and escalate your privileges on this Linux machine.  
 > There is no supporting material - the only new concept in this challenge is Linux cronjobs. Join our [Discord](https://discord.gg/wvfe3XJ) if you're really struggling.
 
 ## Questions
@@ -43,22 +41,18 @@ we will get the password: **chocolate**
 
 ![](./res/pic2.png)
 
-`ssh sam@[ip] -p4567` and then login with the password.
-
+`ssh sam@[ip] -p4567` and then login with the password.  
 `cat flag1.txt` will get us the flag for Question 2.
 
 ![](./res/pic3.png)
 
-Lastly, we need to obtain privesc to read flag2. First we have to find the cronjob that runs every minute.
-typically cronjobs are found in these few directories in Linux machine:
-> /etc/cron.d
+Lastly, we need to obtain privesc to read flag2. First we have to find the cronjob that runs every minute.  
+Typically cronjobs are found in these few directories in Linux machine:
 
-> /etc/cron.daily
-
-> /etc/cron.weekly
-
-> /etc/cron.monthly
-
+> /etc/cron.d  
+> /etc/cron.daily  
+> /etc/cron.weekly  
+> /etc/cron.monthly  
 > /etc/crontab
 
 the /etc/crontab allows one to edit the time at which the cronjobs execute, or add/delete other cronjobs available in any other directories.
@@ -66,21 +60,21 @@ the /etc/crontab allows one to edit the time at which the cronjobs execute, or a
 ![](./res/pic4.png)
 
 
-seems like the cron that runs at every minute is not found in the general /etc/crontab. Which means it is probably running in root's own individual crontab folder /var/spool/cron/crontabs/
+Seems like the cron that runs at every minute is not found in the general /etc/crontab. Which means it is probably running in root's own individual crontab folder /var/spool/cron/crontabs/
 
 Alternatively, let's look around for scripts that were been executed by the cronjob.
 Some digging around and we will find a scripts folder that looks interesting:
-`ls /home/scripts/`
+
+`ls /home/scripts/`  
 `cat /home/scripts/clean_up.sh`
 
-within the clean_up.sh we see a single command `rm -rf /tmp/*`. 
-A simple adding of txt file into /tmp directory and checking the directory every minute will determine that this clean_up.sh is been executed by a cronjob every minute.
+within the clean_up.sh we see a single command `rm -rf /tmp/*`.  
+A simple adding of txt file into /tmp directory and checking the directory every minute will determine that this clean_up.sh is been executed by a cronjob every minute.  
 Which means to say, there is a cronjob that executes this clean_up.sh, which basically removes every files in the /tmp directory.
 So we can exploit this to get our flag2!
 
-`nano /home/scripts/clean_up.sh`
-> rm -rf /tmp/*
-
+`nano /home/scripts/clean_up.sh`  
+> rm -rf /tmp/*  
 > cat /home/ubuntu/flag2.txt > /home/sam/flag2.txt
 
 After a minute, we will find the flag2.txt in sam's directory. We got the flag!
