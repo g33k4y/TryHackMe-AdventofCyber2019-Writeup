@@ -43,7 +43,7 @@ Next we look for the main function in the binary and examine its assemby code:
 `afl | grep main`  
 `pdf @main`
 
-![](./res/ic1.png)
+![](./res/pic1.png)
 
 
 At address `0x004005b1`, we can see that a constant value 1 is being moved into the variable `var_ch`.  
