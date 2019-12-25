@@ -112,7 +112,9 @@ Next let's try to upload this file on the webpage:
 
 Ok, we are not allowed to upload php files. So let's try to fiddle around with the extensions by changing it to `.php4`, `.php5`, `.jpg.php`, `.phtml`. Eventually `.phtml` will work.
 
-Look back at our listener once we uploaded our [php-reverse-shell.phtml](./php-reverse-shell.phtml) file:
+Look back at our listener once we uploaded our [php-reverse-shell.phtml](./php-reverse-shell.phtml) file. We will see that we have obtained an interactive shell.
+
+So we can go straight to find our flag: `cat /home/user/flag.txt`
 
 ![](./res/pic9.png)
 
