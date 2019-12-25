@@ -1,15 +1,11 @@
 ## Introduction
 
-> McSkidy has never really touched low level languages - this is something they must learn in their quest to defeat the Christmas monster.
-
-> Download the archive and apply the command to the following binary files: `chmod +x file-name`
-
-> Please note that these files are compiled to be executed on Linux.
-
+> McSkidy has never really touched low level languages - this is something they must learn in their quest to defeat the Christmas monster.  
+> Download the archive and apply the command to the following binary files: `chmod +x file-name`  
+> Please note that these files are compiled to be executed on Linux.  
 > The questions below are regarding the challenge1 binary file.
 
-> Read the [supporting materials](./Support_Doc.docx) here.
-
+> Read the [supporting materials](./Support_Doc.docx) here.  
 > This exercise requires the following [file(s)](./files.zip).
 
 ## Questions
@@ -44,26 +40,25 @@ We will let r2 analyze the program. This will take a couple minutes.
 
 Next we look for the main function in the binary and examine its assemby code:
 
-`afl | grep main`
-
+`afl | grep main`  
 `pdf @main`
 
 ![](./res/ic1.png)
 
 
-At address `0x004005b1`, we can see that a constant value 1 is being moved into the variable `var_ch`. So we got the first answer: **1**
+At address `0x004005b1`, we can see that a constant value 1 is being moved into the variable `var_ch`.  
+So we got the first answer: **1**
 
 To see the value of eax when _imul_ instruction is called, we will notice that there are two instructions made to register %eax at `0x00400b5f` and `0x00400b62`
 
-`0x00400b5f` - value of variable `var_ch` is pushed into %eax
-
+`0x00400b5f` - value of variable `var_ch` is pushed into %eax  
 `0x00400b62` - value of variable `var_8h` is multipled to %eax and stored into %eax
 
 so `var_ch` = 1, `var_8h` = 6, %eax = 1 * 6, hence second answer: **6**
 
 Lastly, going down the flow:
 
-`0x00400b66` - the value of %eax is being pushed into `var_4h`
+`0x00400b66` - the value of %eax is being pushed into `var_4h`  
 `0x00400b69` - %eax is set to 0. 
 
 Hence we got the third answer: **6**
