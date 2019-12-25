@@ -34,9 +34,9 @@ For this exercise, we need to steal admin's authid cookie value and have it subm
 
 So first we need to create a root directory, and create a index.html and a PHP page:
 
-`mkdir cookiestealer`
-`cd cookiestealer/`
-`touch index.html`
+`mkdir cookiestealer` 
+`cd cookiestealer/`  
+`touch index.html`  
 `touch cookiestealer.php`
 
 Within the index.html, we can setup some parameters to test it's working:
