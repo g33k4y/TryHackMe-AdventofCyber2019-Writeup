@@ -24,7 +24,7 @@ td:lr Answer: **someELKfun**
 First let's deploy the machine and get ourselves VPN-ed into the THM network.  
 once the machine is deployed, we can do a nmap scan:
 
-`nmap <ip> -T4` - will reveal open ports 22,111,8000,9200
+`nmap <ip> -T4` - will reveal open ports 22, 111, 8000, 9200  
 `nmap <ip> -T4 -p 22,111,8000,9200 -A`
 
 ![](./res/pic1.png)
@@ -37,7 +37,7 @@ port 9200 is for elasticsearch. so we can try to enumerate elasticsearch databas
 
 And we get our answer: **9Qs58Ol3AXkMWLxiEyUyyf**
 
-`nmap <ip> -p- -T4` - will reveal open ports 22,111,5601,7223,8000,9200,9300
+`nmap <ip> -p- -T4` - will reveal open ports 22, 111, 5601, 7223, 8000, 9200, 9300  
 `nmap <ip> -p22,111,5601,7223,8000,9200,9300 -T4 -A`
 
 You will get a long list of information from several open ports:
