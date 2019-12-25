@@ -1,11 +1,8 @@
 ## Introduction
 
-> McSkidy has been faring on well so far with assembly - they got some inside knowledge that the christmas monster is weaponizing if statements. Can they get ahead of the curve?
-
-> These programs have been compiled to be executed on Linux x86-64 systems.
-
-> Check out the [supporting material](./Support_Doc.pdf) here. 
-
+> McSkidy has been faring on well so far with assembly - they got some inside knowledge that the christmas monster is weaponizing if statements. Can they get ahead of the curve?  
+> These programs have been compiled to be executed on Linux x86-64 systems.  
+> Check out the [supporting material](./Support_Doc.pdf) here.  
 > The questions below relate to the _if2_ binary.
 
 
@@ -37,8 +34,7 @@ We will let r2 analyze the program with the following command. This will take a 
 
 Next we look for the main function in the binary and examine its assemby code:
 
-`afl | grep main`
-
+`afl | grep main`  
 `pdf @main`
 
 ![](./res/pic1.png)
