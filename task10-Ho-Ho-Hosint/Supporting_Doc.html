@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ho-Ho-Hosint</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="Supporting_Doc_files/screen.css">
+
+    <link rel="shortcut icon" href="https://blog.tryhackme.com/favicon.png" type="image/png">
+    <link rel="canonical" href="https://blog.tryhackme.com/ho-ho/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="https://blog.tryhackme.com/ho-ho/amp/">
+    
+    <meta property="og:site_name" content="TryHackMe Blog">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ho-Ho-Hosint">
+    <meta property="og:description" content="Ho-Ho-Ho!
+[https://tryhackme.com/christmas]Check our Christmas Challenge out! https://tryhackme.com/christmas
+
+This blog post will explain some typical open source intelligence (OSINT)
+techniques. Use these to solve the challenge 5 of the Christmas Advent of Cyber!
+
+Advent of Cyber Room ImageDo this challenge in the Christmas room! 
+https://tryhackme.com/room/25daysofchristmas
+
+What is OSINT?
+OSINT is data collected from publicly available sources to be used in an
+intelligence context. If an att">
+    <meta property="og:url" content="https://blog.tryhackme.com/ho-ho/">
+    <meta property="og:image" content="https://blog.tryhackme.com/content/images/2019/12/thegrinch.jpg">
+    <meta property="article:published_time" content="2019-12-04T22:53:00.000Z">
+    <meta property="article:modified_time" content="2019-12-05T22:17:34.000Z">
+    <meta property="article:tag" content="guide">
+    <meta property="article:tag" content="osint">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ho-Ho-Hosint">
+    <meta name="twitter:description" content="Ho-Ho-Ho!
+[https://tryhackme.com/christmas]Check our Christmas Challenge out! https://tryhackme.com/christmas
+
+This blog post will explain some typical open source intelligence (OSINT)
+techniques. Use these to solve the challenge 5 of the Christmas Advent of Cyber!
+
+Advent of Cyber Room ImageDo this challenge in the Christmas room! 
+https://tryhackme.com/room/25daysofchristmas
+
+What is OSINT?
+OSINT is data collected from publicly available sources to be used in an
+intelligence context. If an att">
+    <meta name="twitter:url" content="https://blog.tryhackme.com/ho-ho/">
+    <meta name="twitter:image" content="https://blog.tryhackme.com/content/images/2019/12/thegrinch.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Ben Spring">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="guide, osint">
+    <meta name="twitter:site" content="@realtryhackme">
+    <meta property="og:image:width" content="642">
+    <meta property="og:image:height" content="429">
+    
+    <script type="text/javascript" async="" src="Supporting_Doc_files/analytics.js"></script><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "TryHackMe Blog",
+        "logo": "https://blog.tryhackme.com/content/images/2019/07/THMlogo-2.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Ben Spring",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://blog.tryhackme.com/content/images/2019/07/space-840x617.jpg",
+            "width": 840,
+            "height": 617
+        },
+        "url": "https://blog.tryhackme.com/author/ben/",
+        "sameAs": [
+            "https://tryhackme.com/p/ben"
+        ]
+    },
+    "headline": "Ho-Ho-Hosint",
+    "url": "https://blog.tryhackme.com/ho-ho/",
+    "datePublished": "2019-12-04T22:53:00.000Z",
+    "dateModified": "2019-12-05T22:17:34.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://blog.tryhackme.com/content/images/2019/12/thegrinch.jpg",
+        "width": 642,
+        "height": 429
+    },
+    "keywords": "guide, osint",
+    "description": "Ho-Ho-Ho!\n[https://tryhackme.com/christmas]Check our Christmas Challenge out! https://tryhackme.com/christmas\n\nThis blog post will explain some typical open source intelligence (OSINT)\ntechniques. Use these to solve the challenge 5 of the Christmas Advent of Cyber!\n\nAdvent of Cyber Room ImageDo this challenge in the Christmas room! \nhttps://tryhackme.com/room/25daysofchristmas\n\nWhat is OSINT?\nOSINT is data collected from publicly available sources to be used in an\nintelligence context. If an att",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://blog.tryhackme.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 2.25">
+    <link rel="alternate" type="application/rss+xml" title="TryHackMe Blog" href="https://blog.tryhackme.com/rss/">
+
+<style id="fit-vids-style">.fluid-width-video-container{flex-grow: 1;width:100%;}.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+<body class="post-template tag-guide tag-osint">
+
+    <div class="site-wrapper">
+
+        
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+                <a class="site-nav-logo" href="https://blog.tryhackme.com/"><img src="Supporting_Doc_files/THMlogo-2.png" alt="TryHackMe Blog"></a>
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="https://blog.tryhackme.com/">Home</a></li>
+    <li class="nav-walkthroughs" role="menuitem"><a href="https://blog.tryhackme.com/tag/walkthrough/">Walkthroughs</a></li>
+    <li class="nav-training-platform" role="menuitem"><a href="https://tryhackme.com/">Training Platform</a></li>
+</ul>
+
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+                <a class="social-link social-link-tw" href="https://twitter.com/realtryhackme" title="Twitter" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+</a>
+        </div>
+            <a class="rss-button" href="https://feedly.com/i/subscription/feed/https://blog.tryhackme.com/rss/" title="RSS" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="6.18" cy="17.82" r="2.18"></circle><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"></path></svg>
+</a>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-guide tag-osint ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2019-12-04">4 December 2019</time>
+                        <span class="date-divider">/</span> <a href="https://blog.tryhackme.com/tag/guide/">guide</a>
+                </section>
+                <h1 class="post-full-title">Ho-Ho-Hosint</h1>
+            </header>
+
+            <figure class="post-full-image">
+                <img srcset="/content/images/size/w300/2019/12/thegrinch.jpg 300w,
+                            /content/images/size/w600/2019/12/thegrinch.jpg 600w,
+                            /content/images/size/w1000/2019/12/thegrinch.jpg 1000w,
+                            /content/images/size/w2000/2019/12/thegrinch.jpg 2000w" sizes="(max-width: 800px) 400px,
+                            (max-width: 1170px) 700px,
+                            1400px" src="Supporting_Doc_files/thegrinch.jpg" alt="Ho-Ho-Hosint">
+            </figure>
+
+            <section class="post-full-content">
+                <div class="post-content">
+                    <!--kg-card-begin: html--><center><h1>Ho-Ho-Ho!</h1></center><!--kg-card-end: html--><!--kg-card-begin: html--><center><a href="https://tryhackme.com/christmas"><img src="Supporting_Doc_files/WrTJYpy.png" alt="TryHackMe Christmas Challenge"></a>
+
+<p>Check our Christmas Challenge out! <a href="https://tryhackme.com/christmas">https://tryhackme.com/christmas</a></p></center><!--kg-card-end: html--><p>This
+ blog post will explain some typical open source intelligence (OSINT) 
+techniques. Use these to solve the challenge 5 of the Christmas Advent 
+of Cyber!</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="Supporting_Doc_files/oiTSj9q.png" class="kg-image"><figcaption>Advent of Cyber Room Image</figcaption></figure><!--kg-card-end: image--><p>Do this challenge in the Christmas room! <a href="https://tryhackme.com/room/25daysofchristmas">https://tryhackme.com/room/25daysofchristmas</a></p><h3 id="what-is-osint">What is OSINT?</h3><p>OSINT
+ is data collected from publicly available sources to be used in an 
+intelligence context. If an attacker were to run a target phishing 
+campaign (which is sending fraudulent emails pretending to be from a 
+reputable company, in order to have them reveal personal information or 
+click on a malicious link), it looks more credible if you have prior 
+knowledge about the individual being targeted.</p><p>Its amazing at how 
+much information people share about themselves on social media 
+platforms, both intentionally and un-intentionally. The OSINT framework 
+is <a href="https://osintframework.com/">https://osintframework.com/</a> is a collection of resources and tools you can use for your intelligence gathering.</p><p>In the challenge, there will be three main OSINT techniques, which are as follows:</p><h3 id="image-metadata">Image Metadata</h3><p>Image metadata is text information that is pertaining to an image file, that is embedded into the file.</p><p>This
+ data includes details relevant to the image itself as well as the 
+information about its production. For example, if you take a photo in 
+the park, your smartphone will attach GPS location metadata to the 
+image. Back in the day, social networks wouldn't strip an images 
+metadata, which mean't a celebrity could take a photo at home and upload
+ it, revealing their location.. Creepy right?</p><p>Image Metadata can 
+also include camera details, such as aperture, shutter speed and DPI.. 
+it can also include the creator (author) or the individual taking the 
+image.</p><p>Exiftool is a free and open-source program for reading 
+metadata on files. Lets use this program to read a photo's metadata. If 
+you don't have exiftool installed, you can download it <a href="https://github.com/exiftool/exiftool">here</a> or you can deploy and access your own Kali machine with it pre-installed <a href="https://tryhackme.com/room/kali">here</a>. </p><!--kg-card-begin: markdown--><p>Run the following command: <code>exiftool &lt;image file&gt;</code></p>
+<!--kg-card-end: markdown--><p>The output will look similar to below:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="Supporting_Doc_files/Screenshot-from-2019-12-04-22-39-03.png" class="kg-image"><figcaption>Example exiftool output</figcaption></figure><!--kg-card-end: image--><h3 id="wayback-machine">WayBack Machine</h3><p>The <a href="https://web.archive.org/">WayBackMachine</a>
+ is a digital archive of the World Wide Web. It takes a snapshot of a 
+website and saves it for us to view in the future. For example, here is 
+what Google looked like on 8th Feb 1999: <a href="https://web.archive.org/web/19990208004515/http://google.com/">https://web.archive.org/web/19990208004515/http://google.com/</a></p><p>This can be used to gather information regarding how a website used to look.</p><p>Does
+ the day 5 challenge give us any websites to navigate to? I wonder if 
+there are any interesting pages that have been snapshot...</p><h3 id="reverse-image-search">Reverse Image Search</h3><p>Wouldn't
+ it be cool if you could search the internet with an image? Well we can!
+ Google actually lets you search the net for an image you have.</p><p>If
+ a user has a profile picture of themselves on one social media, its 
+most likely they've re-used the same photo on lots of other different 
+social media sites. You can take that one image, search all other sites 
+for that image and identify where that user has also signed up.</p><p>It
+ can also be used to identify who or what is in an image. So if you are 
+ever unsure on who someone in an image is (providing its a clear image 
+of just that one individual), Google will most likely tell you.</p><p>For example, suppose we don't know what the following image is:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="Supporting_Doc_files/rndom.jpg" class="kg-image"><figcaption>Standard Christmas Tree Image</figcaption></figure><!--kg-card-end: image--><p>We can search the internet for the image. Go onto Google Image Search (<a href="https://www.google.com/imghp?hl=en">https://www.google.com/imghp?hl=en</a>)
+ and click the camera icon to search by an image. Then select the image!
+ It will tell us what the image is! Oh look, its a Christmas tree!</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="Supporting_Doc_files/Screenshot-from-2019-12-04-22-48-19.png" class="kg-image"><figcaption>Reverse Image Search showing image object being recognised</figcaption></figure><!--kg-card-end: image--><p>Are
+ you able to use image metadata, the WayBackMachine and Reverse Image 
+Searching to solve the Day 5 of the Christmas challenge?</p>
+                </div>
+            </section>
+
+
+            <footer class="post-full-footer">
+
+
+                    
+<section class="author-card">
+        <img class="author-profile-image" src="Supporting_Doc_files/space-840x617.jpg" alt="Ben Spring">
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="https://blog.tryhackme.com/author/ben/">Ben Spring</a></h4>
+            <p>Read <a href="https://blog.tryhackme.com/author/ben/">more posts</a> by this author.</p>
+    </section>
+</section>
+<div class="post-full-footer-right">
+    <a class="author-card-button" href="https://blog.tryhackme.com/author/ben/">Read More</a>
+</div>
+
+
+            </footer>
+
+
+        </article>
+
+    </div>
+</main>
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+
+                <article class="post-card post tag-christmas tag-privilege-escalation ">
+
+    <a class="post-card-image-link" href="https://blog.tryhackme.com/linux-privilege-escalation-suid/">
+        <img class="post-card-image" srcset="/content/images/size/w300/2019/12/linux_security_thinkstock-100748604-large.jpg 300w,
+                    /content/images/size/w600/2019/12/linux_security_thinkstock-100748604-large.jpg 600w,
+                    /content/images/size/w1000/2019/12/linux_security_thinkstock-100748604-large.jpg 1000w,
+                    /content/images/size/w2000/2019/12/linux_security_thinkstock-100748604-large.jpg 2000w" sizes="(max-width: 1000px) 400px, 700px" src="Supporting_Doc_files/linux_security_thinkstock-100748604-large.jpg" alt="Linux Privilege Escalation: SUID">
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="https://blog.tryhackme.com/linux-privilege-escalation-suid/">
+
+            <header class="post-card-header">
+                    <span class="post-card-tags">christmas</span>
+                <h2 class="post-card-title">Linux Privilege Escalation: SUID</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Set owner User ID up on execution Check our Christmas
+ Challenge out! https://tryhackme.com/christmasThis blog post will 
+explain what privilege escalation is and how we can escalate our 
+privileges using SUID</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ben Spring
+                    </div>
+
+                        <a href="https://blog.tryhackme.com/author/ben/" class="static-avatar">
+                            <img class="author-profile-image" src="Supporting_Doc_files/space-840x617.jpg" alt="Ben Spring">
+                        </a>
+                </li>
+            </ul>
+
+            <span class="reading-time">4 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+                <article class="post-card post ">
+
+    <a class="post-card-image-link" href="https://blog.tryhackme.com/setting-up-burp/">
+        <img class="post-card-image" srcset="/content/images/size/w300/2019/12/burpsuite-twittercard.png 300w,
+                    /content/images/size/w600/2019/12/burpsuite-twittercard.png 600w,
+                    /content/images/size/w1000/2019/12/burpsuite-twittercard.png 1000w,
+                    /content/images/size/w2000/2019/12/burpsuite-twittercard.png 2000w" sizes="(max-width: 1000px) 400px, 700px" src="Supporting_Doc_files/burpsuite-twittercard.png" alt="Setting Up Burp">
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="https://blog.tryhackme.com/setting-up-burp/">
+
+            <header class="post-card-header">
+                <h2 class="post-card-title">Setting Up Burp</h2>
+            </header>
+
+            <section class="post-card-excerpt">
+                <p>Burp Suite (referred to as Burp) is a graphical tool 
+for testing Web application security.In this set of tutorials we will go
+ through how to set up Burp to intercept traffic on</p>
+            </section>
+
+        </a>
+
+        <footer class="post-card-meta">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+
+                    <div class="author-name-tooltip">
+                        Ashu Savani
+                    </div>
+
+                        <a href="https://blog.tryhackme.com/author/ashu/" class="static-avatar author-profile-image"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"></path></g></svg>
+</a>
+                </li>
+            </ul>
+
+            <span class="reading-time">5 min read</span>
+
+        </footer>
+
+    </div>
+
+</article>
+
+        </div>
+    </div>
+</aside>
+
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://blog.tryhackme.com/">
+                <img src="Supporting_Doc_files/canva-photo-editor--1-.png" alt="TryHackMe Blog icon">
+            <span>TryHackMe Blog</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">—</span>
+    <div class="floating-header-title">Ho-Ho-Hosint</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"></path>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Ho-Ho-Hosint&amp;url=https://blog.tryhackme.com/ho-ho/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path></svg>
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.tryhackme.com/ho-ho/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path></svg>
+        </a>
+    </div>
+    <progress id="reading-progress" class="progress" value="0" max="7012">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://blog.tryhackme.com/">TryHackMe Blog</a> © 2019</section>
+                <nav class="site-footer-nav">
+                    <a href="https://blog.tryhackme.com/">Latest Posts</a>
+                    
+                    <a href="https://twitter.com/realtryhackme" target="_blank" rel="noopener">Twitter</a>
+                    <!--<a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>-->
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script>
+        var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+        })
+    </script>
+
+
+    <script src="Supporting_Doc_files/jquery-3.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="Supporting_Doc_files/jquery.js"></script>
+
+
+    <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('#reading-progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+
+});
+</script>
+
+
+    <script async="" src="Supporting_Doc_files/js.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129682338-1');
+</script>
+
+
+
+</body></html>
